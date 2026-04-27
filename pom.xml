@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.bekacookware</groupId>
+  <artifactId>com.bekacookware</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+
+
+    <name>Selenium Java TestNG Framework</name>
+    <description>bekacookware Automation Test suite</description>
+
+    <properties>
+
+        <java.version>21</java.version>
+        <selenium.version>4.39.0</selenium.version>
+        <maven.compiler.source.version>17</maven.compiler.source.version>
+        <maven.compiler.target.version>17</maven.compiler.target.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.plugin.version>3.12.1</maven.compiler.plugin.version>
+        <maven.surefire.plugin.version>3.2.3</maven.surefire.plugin.version>
+        <cucumber.version>7.16.0</cucumber.version>
+        <testng.version>7.11.0</testng.version>
+
+	</properties>
+
+    <dependencies>
+        <!-- Selenium -->
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>${selenium.version}</version>
+        </dependency>
+
+        <!-- TestNG -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-junit</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
+        <dependency>
+            <groupId>io.rest-assured</groupId>
+            <artifactId>rest-assured</artifactId>
+            <version>5.5.6</version>
+        </dependency>
+
+
+        <!-- Source: https://mvnrepository.com/artifact/com.github.stephenc.monte/monte-screen-recorder -->
+        <dependency>
+            <groupId>com.github.stephenc.monte</groupId>
+            <artifactId>monte-screen-recorder</artifactId>
+            <version>0.7.7.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!-- Source: https://mvnrepository.com/artifact/com.aventstack/chaintest-testng -->
+        <dependency>
+            <groupId>com.aventstack</groupId>
+            <artifactId>chaintest-testng</artifactId>
+            <version>1.0.10</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.20.0</version>
+        </dependency>
+        <!-- TestNG -->
+
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.17.0</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+
+        <!-- ✅ Plugin Management -->
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>${maven.compiler.plugin.version}</version>
+                    <configuration>
+                        <source>${maven.compiler.source.version}</source>
+                        <target>${maven.compiler.target.version}</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-surefire-plugin</artifactId>
+                    <version>${maven.surefire.plugin.version}</version>
+                    <configuration>
+                        <suiteXmlFiles>
+                            <suiteXmlFile>testNG.xml</suiteXmlFile>
+                        </suiteXmlFiles>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-failsafe-plugin</artifactId>
+                    <version>3.2.5</version>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
+</project>
