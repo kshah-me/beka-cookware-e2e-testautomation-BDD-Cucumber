@@ -271,7 +271,7 @@ public class NavigationFilterPage {
 
     @FindBy(xpath = "(//span[normalize-space()='Aluminium' or normalize-space()='Aluminum']/ancestor::li)[1]")
     private WebElement filterMaterialAluminiumButtonOnFilterSection;
-    @FindBy(xpath = "//details[@data-index='3']//summary")
+    @FindBy(xpath = "//details[@data-index='4']//summary")
     private WebElement filterMaterialExpandButtonOnFilterSection;
     public void clickAluminiumFilterUnderMaterialSectionOnFilterSection() throws InterruptedException {
         WaitUtils.waitUntillElementVisibility(driver,filterMaterialExpandButtonOnFilterSection).click();

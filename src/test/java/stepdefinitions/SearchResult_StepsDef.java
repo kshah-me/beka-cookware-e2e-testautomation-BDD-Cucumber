@@ -7,9 +7,9 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.annotations.Test;
 
-public class SearchResult_StepsDef extends DriverFactory {
+public class SearchResult_StepsDef {
 
-    SearchPage searchpage = new SearchPage(DriverFactory.getDriver());
+    SearchPage searchpage = new SearchPage(DriverFactory.getINSTANCE().getDriver());
 
     @And("User clicks on search icon")
     public void user_clicks_on_search_icon() {
@@ -72,73 +72,5 @@ public class SearchResult_StepsDef extends DriverFactory {
     public void verify_search_result_page_with_updated_details_should_be_displayed(String newitem) {
         searchpage.verifyNewSearchedItemsDetailsOnSearchResultPage(newitem);
     }
-
-//    @Test
-//    public void verifyProductAsHeaderDisplayedInSearchedProductList() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("Pan");
-//        searchpage.verifyProductAsHeaderInSearchResult();
-//    }
-//
-//    @Test
-//    public void verifySearchedProductListHasPrice() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("water");
-//        searchpage.verifySearchResultItemHasProductPrice();
-//    }
-//
-//    @Test
-//    public void verifySearchedProductListHasNoBrokenLink() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("fork");
-//        searchpage.verifySearchResultItemHasNoBrokenLink();
-//    }
-//
-//    @Test
-//    public void verifySearchedProductListHasNoBrokenImage() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("Glass");
-//        searchpage.verifySearchResultItemHasNoBrokenImg();
-//    }
-//
-//    @Test
-//    public void verifyMessageForNoResultFoundOnSearchedProductPage() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("ABC");
-//        searchpage.clickSearchSubmitButtonOnHomePage();
-//        searchpage.verifyNoSearchResultMessageOnHomePage();
-//    }
-//
-//    @Test
-//    public void verifySearchedProductResultPageHasNoBrokenImage() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("Plate");
-//        searchpage.clickSearchSubmitButtonOnHomePage();
-//        searchpage.verifyProductSearchResultPageHasNoBrokenImage();
-//    }
-//
-//    @Test
-//    public void verifySearchedProductResultPageHasProductNameAsLinkAndNotEmpty() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("Plate");
-//        searchpage.clickSearchSubmitButtonOnHomePage();
-//        searchpage.verifyProductSearchResultPageHasProductNameAslinkAndNotEmpty();
-//    }
-//
-//    @Test
-//    public void verifySearchedProductResultPageHasProductDescriptionNotEmpty() throws InterruptedException {
-//        searchpage = new SearchPage(DriverFactory.getDriver());
-//        searchpage.clickSearchButtonOnHomePage();
-//        searchpage.enterSearchInputBoxOnHomePage("Plate");
-//        searchpage.clickSearchSubmitButtonOnHomePage();
-//        searchpage.verifyProductSearchResultPageHasProductDescriptionNotEmpty();
-//    }
 
 }

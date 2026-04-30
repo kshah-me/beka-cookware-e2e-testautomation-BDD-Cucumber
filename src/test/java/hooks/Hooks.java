@@ -10,7 +10,7 @@ import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
 
-public class Hooks extends DriverFactory {
+public class Hooks{
 
 
     @Before()
@@ -18,14 +18,14 @@ public class Hooks extends DriverFactory {
         if(ConfigReader.propValueFromConfigFile("RecordingExecution").equals("Yes")){
             ScreenRecorderUtil.startRecord(sc.getName());
         }
-        DriverFactory.setDriver();
+        DriverFactory.getINSTANCE().setDriver();
     }
 
 
     @After()
     public void teardown(Scenario sc) throws Exception {
-        CaptureScreenshotEvidence.takeScreenshotOnFailure(DriverFactory.getDriver(),sc);
-        DriverFactory.quitDriver();
+        CaptureScreenshotEvidence.takeScreenshotOnFailure(DriverFactory.getINSTANCE().getDriver(), sc);
+        DriverFactory.getINSTANCE().quitDriver();
         if(ConfigReader.propValueFromConfigFile("RecordingExecution").equals("Yes")){
             ScreenRecorderUtil.stopRecord();
         }

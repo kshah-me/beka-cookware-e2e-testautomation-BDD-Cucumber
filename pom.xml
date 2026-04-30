@@ -75,8 +75,8 @@
         <!-- Source: https://mvnrepository.com/artifact/com.aventstack/chaintest-testng -->
         <dependency>
             <groupId>com.aventstack</groupId>
-            <artifactId>chaintest-testng</artifactId>
-            <version>1.0.10</version>
+            <artifactId>chaintest-cucumber-jvm</artifactId>
+            <version>1.0.12</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/commons-io/commons-io -->

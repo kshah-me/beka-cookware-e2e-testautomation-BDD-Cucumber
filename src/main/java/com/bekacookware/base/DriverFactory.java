@@ -7,15 +7,24 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
-import java.time.Duration;
 
 
 public class DriverFactory {
 
+    private static DriverFactory INSTANCE;
+    private DriverFactory(){
+    }
 
-    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    public static DriverFactory getINSTANCE(){
+        if (INSTANCE==null){
+            INSTANCE=new DriverFactory();
+        }
+        return INSTANCE;
+    }
 
-    public static void setDriver() {
+    private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+
+    public void setDriver() {
         ChromeOptions chromeOptions = new ChromeOptions();
         chromeOptions.addArguments("--force-device-scale-factor=0.8");
         chromeOptions.addArguments("--incognito");
@@ -29,49 +38,19 @@ public class DriverFactory {
         } else {
             System.out.println("Please provide the correct browser name" + ConfigReader.propValueFromConfigFile("browserName"));
         }
-
-        DriverFactory.getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-        DriverFactory.getDriver().manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-        DriverFactory.getDriver().manage().deleteAllCookies();
-        DriverFactory.getDriver().manage().window().maximize();
-        DriverFactory.getDriver().get(ConfigReader.propValueFromConfigFile("url"));
     }
 
 
-    public static WebDriver getDriver() {
+    public  WebDriver getDriver() {
         return driver.get();
     }
 
 
-    public static void quitDriver() {
+    public  void quitDriver() {
         if (driver.get() != null) {
             driver.get().quit();
             driver.remove(); // VERY IMPORTANT
         }
     }
 }
-
-//
-//    @BeforeMethod(dependsOnMethods = "setUpBrowser")
-//    public void  closeCookiesAndAddPopUp(){
-//        homepage = new HomePage(DriverFactory.getDriver());
-//        homepage.clickCookiesPopupAcceptance();
-//        homepage.clickCrossButtonOnGermanyCountrySelectionPopup();
-//        homepage.clickCloseButtonOnAddPopUp();
-//    }
-//
-//    @BeforeMethod(dependsOnMethods = "closeCookiesAndAddPopUp")
-//    public void  changeTheLanguageOfApplication(){
-//        homepage = new HomePage(DriverFactory.getDriver());
-//        String lang =ConfigReader.propValueFromConfigFile("Language");
-//        homepage.clickOnLanguageDropDown();
-//        switch (lang) {
-//            case "EN" -> homepage.selectEnglishLanguage();
-//            case "DE" -> homepage.selectDeutschLanguage();
-//            case "NL" -> homepage.selectDutchLanguage();
-//            case "FR" -> homepage.selectFrenchLanguage();
-//        }
-//        WaitUtils.waitUntillPageLoaded(DriverFactory.getDriver());
-//        homepage.clickCloseButtonOnAddPopUp();
-//    }
 

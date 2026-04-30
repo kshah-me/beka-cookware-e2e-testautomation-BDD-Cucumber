@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.time.Duration;
+
 
 public class CommonActivity {
 
@@ -17,6 +19,10 @@ public class CommonActivity {
 
     public void launchUrl(String url) {
         driver.get(url);
+        driver.manage().window().maximize();
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
+        driver.manage().deleteAllCookies();
         clickCookiesPopupAcceptance();
         clickCrossButtonOnGermanyCountrySelectionPopup();
         clickCloseButtonOnAddPopUp();

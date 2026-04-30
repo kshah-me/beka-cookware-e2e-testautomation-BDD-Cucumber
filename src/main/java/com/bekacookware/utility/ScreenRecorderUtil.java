@@ -43,7 +43,7 @@ public class ScreenRecorderUtil extends ScreenRecorder {
  }
 
  public static void startRecord(String methodName) throws Exception {
-  File file = new File("./test-recordings/");
+  File file = new File("./test-execution-recordings/");
   Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
   int width = screenSize.width;
   int height = screenSize.height;
