@@ -11,8 +11,4 @@ public class NumberExtractFromString {
             return null;
         }
 
-        public static double extractProductPriceEuroAsDouble(String text) {
-            String value = extractEuroValue(text);
-            return value != null ? Double.parseDouble(value.replace(",", ".")) : 0.0;
-    }
 }

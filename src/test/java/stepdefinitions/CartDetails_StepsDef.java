@@ -7,10 +7,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 
-public class CartDetails_StepsDef extends DriverFactory {
+public class CartDetails_StepsDef{
 
 
-    CartPage cartpage = new CartPage(DriverFactory.getDriver());
+    CartPage cartpage = new CartPage(DriverFactory.getINSTANCE().getDriver());
 
     @Given("Click on Add to Cart button")
     public void click_on_add_to_cart_button() throws InterruptedException {

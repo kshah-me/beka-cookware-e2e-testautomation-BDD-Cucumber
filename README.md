@@ -1,6 +1,7 @@
 # Beka-Cookware Ecommerce Test Automation BDD-Cucumber-TestNG
 
-### This is a complete project where an [E-commerce site](https://www.beka-cookware.com/) site is automated by writing test suites using selenium-webdriver and BDD-Cucumber-TestNG as testing framework. This Framework help to run application on different languages, parallel execution on scenario level, retrylogic, record the execution and could be configure in config.property file.
+### This is a complete project where an [E-commerce site](https://www.beka-cookware.com/) site is automated by writing test suites using selenium-webdriver and BDD-Cucumber-TestNG as testing framework. This Framework help to run application on different languages, parallel execution on scenario level with thread safety, retrylogic in case failure, record the execution and could be configure in config.property file.
+
 
 The following key modules/pages are automated:
 
@@ -20,12 +21,15 @@ For failed test cases it will take a screenshot as well at the point of failure.
 
 - **pom.xml:** Maven configuration file containing project dependencies for Selenium Webdriver, Java, RestAssued, BDD-Cucumber,TestNG, screen-recorder and   Chaintest.
 
+- **testNG.xml:** The thread count can be increase or decrease incase of parallel testing.
+
+
 -**configuration:**
   -	**config.property:** This file helps to provide the URL, Execution recording option,set the preferred browser and provide the preferred Language settings in which the URL would be loaded. 
   
 - **src/main/java:**
   - **base:** Contains DriverFactory.java, a class providing setup and teardown methods, initializing WebDriver instances.
-  - **config:** ConfigReader.java, offering methods to read data from config file.
+  - **config:** ConfigReader.java, offering methods to read data from config file, here url of application, browser name on which test to be run, and Language of application are defined.
   - **pageObjects:** Stores CartPage.java, CheckoutPage.java, CommonActivity.java, HomePage.java, NavigationFilterPage.java,ProductDetailsPage.java, 
 	  SearchPage.java defining XPath expressions for elements on mentioned pages.
   - **utility:** Contains various utility classes:
@@ -42,6 +46,8 @@ For failed test cases it will take a screenshot as well at the point of failure.
   - **hooks:** Hooks help to initiaze the browser and close the browser once the execution is done
   - **runner:** All features files location is mentioned for execution
 ---
+
+
 
 
 ### Technology: </br>
@@ -73,6 +79,14 @@ mvn clean test
 - Let the project build successfully
 - Selenium will open the browser and start automating.
 - After automation to view allure report , give the following commands:
+
+
+---
+
+**Output:**
+
+	- **target/chaintest/resources:** Execution report in html formate will be generated here. 
+	- **test-execution-recordings:** The video recording of test execution with scenarios name will be generated here. 
 
 ```Chaintest report overview
 

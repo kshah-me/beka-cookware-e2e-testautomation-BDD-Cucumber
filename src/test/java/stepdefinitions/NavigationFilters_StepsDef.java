@@ -7,10 +7,10 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
-public class NavigationFilters_StepsDef extends DriverFactory {
+public class NavigationFilters_StepsDef {
 
 
-    NavigationFilterPage navigationfilterpage = new NavigationFilterPage(DriverFactory.getDriver());
+    NavigationFilterPage navigationfilterpage = new NavigationFilterPage(DriverFactory.getINSTANCE().getDriver());
 
     @When("User click on About Beka Menu button")
     public void user_click_on_about_beka_menu_button() {

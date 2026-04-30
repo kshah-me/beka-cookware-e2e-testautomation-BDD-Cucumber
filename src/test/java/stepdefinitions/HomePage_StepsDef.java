@@ -10,11 +10,11 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 
-public class HomePage_StepsDef extends DriverFactory {
+public class HomePage_StepsDef {
 
 
-    HomePage homepage = new HomePage(DriverFactory.getDriver());
-    CommonActivity commonactivity = new CommonActivity(DriverFactory.getDriver());
+    HomePage homepage = new HomePage(DriverFactory.getINSTANCE().getDriver());
+    CommonActivity commonactivity = new CommonActivity(DriverFactory.getINSTANCE().getDriver());
 
     @Then("Verify logo is present on home page")
     public void verify_logo_is_present_on_home_page() {

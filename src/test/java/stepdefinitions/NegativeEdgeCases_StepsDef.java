@@ -7,11 +7,11 @@ import io.cucumber.java.en.When;
 
 
 
-public class NegativeEdgeCases_StepsDef extends DriverFactory {
+public class NegativeEdgeCases_StepsDef{
 
-    HomePage homepage = new HomePage(DriverFactory.getDriver());
-    CartPage cartpage = new CartPage(DriverFactory.getDriver());
-    CheckoutPage checkoutpage = new CheckoutPage(DriverFactory.getDriver());
+    HomePage homepage = new HomePage(DriverFactory.getINSTANCE().getDriver());
+    CartPage cartpage = new CartPage(DriverFactory.getINSTANCE().getDriver());
+    CheckoutPage checkoutpage = new CheckoutPage(DriverFactory.getINSTANCE().getDriver());
 
     @When("User enter invalid username {string}")
     public void user_enter_invalid_usrname(String username) {
