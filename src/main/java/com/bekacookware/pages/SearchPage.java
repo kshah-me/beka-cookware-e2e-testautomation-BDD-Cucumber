@@ -1,6 +1,7 @@
 package com.bekacookware.pages;
 
 
+import com.bekacookware.base.BasePage;
 import com.bekacookware.config.ConfigReader;
 import com.bekacookware.utility.UrlCheck;
 import com.bekacookware.utility.WaitUtils;
@@ -12,14 +13,8 @@ import org.testng.Assert;
 import java.util.List;
 import java.util.Objects;
 
-public class SearchPage {
+public class SearchPage extends BasePage {
 
-
-    WebDriver driver;
-    public SearchPage(WebDriver driver) {
-        this.driver=driver;
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(xpath = "//button[@data-modal-id='search-modal']")
     private WebElement searchButtonOnHomePage;

@@ -1,6 +1,6 @@
 package stepdefinitions;
 
-import com.bekacookware.base.DriverFactory;
+
 import com.bekacookware.pages.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -9,9 +9,9 @@ import io.cucumber.java.en.When;
 
 public class NegativeEdgeCases_StepsDef{
 
-    HomePage homepage = new HomePage(DriverFactory.getINSTANCE().getDriver());
-    CartPage cartpage = new CartPage(DriverFactory.getINSTANCE().getDriver());
-    CheckoutPage checkoutpage = new CheckoutPage(DriverFactory.getINSTANCE().getDriver());
+    HomePage homepage = new HomePage();
+    CartPage cartpage = new CartPage();
+    CheckoutPage checkoutpage = new CheckoutPage();
 
     @When("User enter invalid username {string}")
     public void user_enter_invalid_usrname(String username) {

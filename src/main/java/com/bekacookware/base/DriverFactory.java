@@ -8,48 +8,80 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
+import java.time.Duration;
 
-public class DriverFactory {
 
-    private static DriverFactory INSTANCE;
-    private DriverFactory(){
-    }
+public final class DriverFactory {
 
-    public static DriverFactory getINSTANCE(){
-        if (INSTANCE==null){
-            INSTANCE=new DriverFactory();
-        }
+    private static final DriverFactory INSTANCE = new DriverFactory();
+
+    private DriverFactory() { }
+
+    public static DriverFactory getInstance() {
         return INSTANCE;
     }
 
-    private ThreadLocal<WebDriver> driver = new ThreadLocal<>();
+    private static ThreadLocal<WebDriver> driver = new ThreadLocal<>();
 
-    public void setDriver() {
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.addArguments("--force-device-scale-factor=0.8");
-        chromeOptions.addArguments("--incognito");
-        EdgeOptions edgeOptions = new EdgeOptions();
-        edgeOptions.addArguments("--force-device-scale-factor=0.8"); // 80% zoom
+    public void initDriver() {
 
-        if (ConfigReader.propValueFromConfigFile("browserName").equals("chrome")) {
-            driver.set(new ChromeDriver(chromeOptions));
-        } else if (ConfigReader.propValueFromConfigFile("browserName").equals("edge")) {
-            driver.set(new EdgeDriver(edgeOptions));
-        } else {
-            System.out.println("Please provide the correct browser name" + ConfigReader.propValueFromConfigFile("browserName"));
+        if (driver.get() != null) {
+            return; // prevents duplicate driver creation
         }
+
+        String browser = ConfigReader
+                .propValueFromConfigFile("browserName")
+                .toLowerCase();
+
+        switch (browser) {
+
+            case "chrome":
+                driver.set(new ChromeDriver(getChromeOptions()));
+                break;
+
+            case "edge":
+                driver.set(new EdgeDriver(getEdgeOptions()));
+                break;
+
+            default:
+                throw new RuntimeException(
+                        "Invalid browser name provided: " + browser
+                );
+        }
+
+        setupBrowser();
     }
 
+    private ChromeOptions getChromeOptions() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--incognito");
+        options.addArguments("--force-device-scale-factor=0.8");
+        options.addArguments("--incognito");
+      return options;
+    }
 
-    public  WebDriver getDriver() {
+    private EdgeOptions getEdgeOptions() {
+        EdgeOptions options = new EdgeOptions();
+        options.addArguments("--force-device-scale-factor=0.8");
+        options.addArguments("-inprivate");
+        return options;
+    }
+
+    private void setupBrowser() {
+        getDriver().manage().deleteAllCookies();
+        getDriver().manage().window().maximize();
+        getDriver().manage().timeouts()
+                .implicitlyWait(Duration.ofSeconds(60));
+    }
+
+    public WebDriver getDriver() {
         return driver.get();
     }
 
-
-    public  void quitDriver() {
+    public void quitDriver() {
         if (driver.get() != null) {
             driver.get().quit();
-            driver.remove(); // VERY IMPORTANT
+            driver.remove();
         }
     }
 }

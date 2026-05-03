@@ -1,7 +1,6 @@
 package stepdefinitions;
 
 
-import com.bekacookware.base.DriverFactory;
 import com.bekacookware.config.ConfigReader;
 import com.bekacookware.pages.CommonActivity;
 import com.bekacookware.pages.HomePage;
@@ -13,8 +12,8 @@ import io.cucumber.java.en.When;
 public class HomePage_StepsDef {
 
 
-    HomePage homepage = new HomePage(DriverFactory.getINSTANCE().getDriver());
-    CommonActivity commonactivity = new CommonActivity(DriverFactory.getINSTANCE().getDriver());
+    HomePage homepage = new HomePage();
+    CommonActivity commonactivity = new CommonActivity();
 
     @Then("Verify logo is present on home page")
     public void verify_logo_is_present_on_home_page() {
@@ -42,16 +41,7 @@ public class HomePage_StepsDef {
 
     @Then("Verify application is in {string} Language")
     public void verify_application_is_in_language(String lang) {
-        if (lang.contains("English")) {
-            homepage.verifyApplicationInEnglish();
-        } else if (lang.contains("Dutch")) {
-            homepage.verifyApplicationInDutch();
-        } else if (lang.contains("French")) {
-            homepage.verifyApplicationInFrench();
-        } else if (lang.contains("Deutsch")) {
-            homepage.verifyApplicationInDeutsch();
-        }
-
+            homepage.verifyApplicationLanguage(lang);
     }
 
     @When("Select application language based on configuration")

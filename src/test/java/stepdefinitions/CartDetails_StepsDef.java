@@ -1,6 +1,6 @@
 package stepdefinitions;
 
-import com.bekacookware.base.DriverFactory;
+
 import com.bekacookware.pages.CartPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -10,7 +10,7 @@ import io.cucumber.java.en.Then;
 public class CartDetails_StepsDef{
 
 
-    CartPage cartpage = new CartPage(DriverFactory.getINSTANCE().getDriver());
+    CartPage cartpage = new CartPage();
 
     @Given("Click on Add to Cart button")
     public void click_on_add_to_cart_button() throws InterruptedException {
@@ -24,10 +24,9 @@ public class CartDetails_StepsDef{
 
     @Then("Increase the product count to {int}")
     public void increase_the_product_count_to(Integer count) throws InterruptedException {
-        for (int i=1;i<count;i++){
-            cartpage.clickIncrementItemCountButtonCartPopUp();
+            cartpage.clickIncrementItemCountButtonCartPopUp(count);
             Thread.sleep(5000);
-        }
+
     }
 
     @Then("Click on close cart button")
@@ -51,12 +50,6 @@ public class CartDetails_StepsDef{
         cartpage.verifyProductPriceOnCareIsSameAsProductDetails();
     }
 
-
-    @Then("Increase the product count")
-    public void increase_the_product_count() throws InterruptedException {
-        cartpage.clickIncrementItemCountButtonCartPopUp();
-        Thread.sleep(3000);
-    }
 
     @Then("Verify the total price")
     public void verify_the_total_price() {

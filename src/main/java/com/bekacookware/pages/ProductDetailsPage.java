@@ -1,26 +1,17 @@
 package com.bekacookware.pages;
 
 
+import com.bekacookware.base.BasePage;
 import com.bekacookware.config.ConfigReader;
-import com.bekacookware.utility.MouseKeyboardAction;
-import com.bekacookware.utility.PageScrollUtility;
 import com.bekacookware.utility.UrlCheck;
 import com.bekacookware.utility.WaitUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import java.util.List;
 
-public class ProductDetailsPage{
+public class ProductDetailsPage extends BasePage {
 
-    WebDriver driver;
-    MouseKeyboardAction mka = new MouseKeyboardAction();
-    public ProductDetailsPage(WebDriver driver) {
-        this.driver=driver;
-        PageFactory.initElements(driver, this);
-    }
 
     @FindBy(xpath = "(//h2[@class='h3']/a)[1]")
     private WebElement firstItemUnderProductResultPage;

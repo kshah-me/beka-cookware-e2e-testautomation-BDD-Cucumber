@@ -1,6 +1,6 @@
 package stepdefinitions;
 
-import com.bekacookware.base.DriverFactory;
+
 import com.bekacookware.pages.NavigationFilterPage;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
@@ -10,7 +10,7 @@ import io.cucumber.java.en.When;
 public class NavigationFilters_StepsDef {
 
 
-    NavigationFilterPage navigationfilterpage = new NavigationFilterPage(DriverFactory.getINSTANCE().getDriver());
+    NavigationFilterPage navigationfilterpage = new NavigationFilterPage();
 
     @When("User click on About Beka Menu button")
     public void user_click_on_about_beka_menu_button() {

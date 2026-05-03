@@ -1,20 +1,13 @@
 package com.bekacookware.pages;
 
+import com.bekacookware.base.BasePage;
 import com.bekacookware.config.ConfigReader;
 import com.bekacookware.utility.WaitUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.junit.Assert;
 
-public class CheckoutPage {
-
-    WebDriver driver;
-    public CheckoutPage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+public class CheckoutPage  extends BasePage {
 
 
     @FindBy(xpath = "//input[@name='reductions']")
