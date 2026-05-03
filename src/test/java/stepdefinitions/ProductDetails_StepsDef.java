@@ -1,13 +1,13 @@
 package stepdefinitions;
 
-import com.bekacookware.base.DriverFactory;
+
 import com.bekacookware.pages.ProductDetailsPage;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class ProductDetails_StepsDef{
 
-    ProductDetailsPage productdetailspage = new ProductDetailsPage(DriverFactory.getINSTANCE().getDriver());
+    ProductDetailsPage productdetailspage = new ProductDetailsPage();
 
     @When("Click on first item on search result page")
     public void click_on_first_item_on_search_result_page() {

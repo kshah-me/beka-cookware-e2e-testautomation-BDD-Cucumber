@@ -1,15 +1,15 @@
 package stepdefinitions;
 
-import com.bekacookware.base.DriverFactory;
+
 import com.bekacookware.pages.*;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.testng.annotations.Test;
+
 
 public class SearchResult_StepsDef {
 
-    SearchPage searchpage = new SearchPage(DriverFactory.getINSTANCE().getDriver());
+    SearchPage searchpage = new SearchPage();
 
     @And("User clicks on search icon")
     public void user_clicks_on_search_icon() {

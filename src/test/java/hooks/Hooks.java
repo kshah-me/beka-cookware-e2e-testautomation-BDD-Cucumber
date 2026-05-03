@@ -18,17 +18,16 @@ public class Hooks{
         if(ConfigReader.propValueFromConfigFile("RecordingExecution").equals("Yes")){
             ScreenRecorderUtil.startRecord(sc.getName());
         }
-        DriverFactory.getINSTANCE().setDriver();
+        DriverFactory.getInstance().initDriver();
     }
 
 
     @After()
     public void teardown(Scenario sc) throws Exception {
-        CaptureScreenshotEvidence.takeScreenshotOnFailure(DriverFactory.getINSTANCE().getDriver(), sc);
-        DriverFactory.getINSTANCE().quitDriver();
+        CaptureScreenshotEvidence.takeScreenshotOnFailure(DriverFactory.getInstance().getDriver(), sc);
+        DriverFactory.getInstance().quitDriver();
         if(ConfigReader.propValueFromConfigFile("RecordingExecution").equals("Yes")){
             ScreenRecorderUtil.stopRecord();
         }
-
     }
 }

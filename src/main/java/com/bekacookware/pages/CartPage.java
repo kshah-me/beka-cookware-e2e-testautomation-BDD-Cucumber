@@ -1,25 +1,20 @@
 package com.bekacookware.pages;
 
 
-
+import com.bekacookware.base.BasePage;
 import com.bekacookware.config.ConfigReader;
 import com.bekacookware.utility.WaitUtils;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.junit.Assert;
 import java.util.*;
 
-public class CartPage{
+public class CartPage extends BasePage {
 
-    String productname = "";
-    Double productprice ;
-    WebDriver driver;
-    public CartPage(WebDriver driver) {
-        this.driver=driver;
-        PageFactory.initElements(driver, this);
-    }
+    private String productname = "";
+    private Double productprice ;
+
 
     @FindBy(xpath="//ul/li/a[@data-modal-id='cart-modal']/sup")
     private WebElement countOnCartButton;
@@ -29,8 +24,33 @@ public class CartPage{
 
     @FindBy(xpath="(//button[@data-increment='1'])[2]")
     private WebElement incrementItemCountButtonCartPopUp;
-    public void clickIncrementItemCountButtonCartPopUp() {
-        WaitUtils.waitUntillElementVisibility(driver,incrementItemCountButtonCartPopUp).click();
+    public void clickIncrementItemCountButtonCartPopUp(Integer count) throws InterruptedException {
+        try {
+            if (count == 1) {
+                    WaitUtils.waitUntillElementClickable(driver, incrementItemCountButtonCartPopUp).click();
+                    Thread.sleep(5000);
+                }
+            else {
+                for (int i = 1; i < count; i++) {
+                    WaitUtils.waitUntillElementClickable(driver, incrementItemCountButtonCartPopUp).click();
+                    Thread.sleep(5000);
+                }
+            }
+
+        } catch (org.openqa.selenium.StaleElementReferenceException ex) {
+            WebElement ele = driver.findElement(By.xpath("(//button[@data-increment='1'])[2]"));
+            if (count == 1) {
+                WaitUtils.waitUntillElementClickable(driver, ele).click();
+                Thread.sleep(5000);
+            }
+            else {
+                for (int i = 1; i < count; i++) {
+                    WaitUtils.waitUntillElementClickable(driver, ele).click();
+                    Thread.sleep(5000);
+                }
+            }
+
+        }
     }
 
 
@@ -83,7 +103,7 @@ public class CartPage{
     private WebElement totalPriceOnCart;
     public void verifyTotalPriceIsSumOfEachItemPrice() {
         double updatedprice = productprice * 2;
-        System.out.println("Calculated price:- "+updatedprice);
+        //System.out.println("Calculated price:- "+updatedprice);
         Assert.assertEquals(Double.parseDouble(totalPriceOnCart.getText().trim().replace("€", "").replace(",", ".")), updatedprice, 0.01);
     }
 

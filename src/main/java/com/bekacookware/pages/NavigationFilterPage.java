@@ -1,15 +1,14 @@
 package com.bekacookware.pages;
 
 
+import com.bekacookware.base.BasePage;
 import com.bekacookware.config.ConfigReader;
 import com.bekacookware.utility.MouseKeyboardAction;
 import com.bekacookware.utility.PageScrollUtility;
 import com.bekacookware.utility.UrlCheck;
 import com.bekacookware.utility.WaitUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.junit.Assert;
 import java.util.List;
 import java.util.Objects;
@@ -17,16 +16,10 @@ import java.util.regex.*;
 
 
 
-public class NavigationFilterPage {
+public class NavigationFilterPage  extends BasePage {
 
-    Integer totalcountbeforefilter;
-    WebDriver driver;
-    public NavigationFilterPage(WebDriver driver) {
-        this.driver=driver;
-        PageFactory.initElements(driver, this);
-    }
+    private Integer totalcountbeforefilter;
 
-    MouseKeyboardAction mka = new MouseKeyboardAction();
 
     @FindBy(xpath = "(//ul[@class='top-nav__list']/li/a)[1]")
     private WebElement aboutBekaMenuButton;
@@ -159,25 +152,25 @@ public class NavigationFilterPage {
     @FindBy(xpath = "//ul[@class='main-nav__list']/li/a[contains(@href,'collections/all')]")
     private WebElement productMenuDropDown;
     public void HoverOnProductMenuDropDown() {
-        mka.mouseHoverOnMainMenu(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown));
+        MouseKeyboardAction.mouseHoverOnMainMenu(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown));
     }
 
     @FindBy(xpath = "//img[contains(@src,'cdn/shop/files/pannen.png?')]/ancestor::a")
     private WebElement fryingPannUnderProductGridDropDown;
     public void clickFryingPannUnderProductGridDropDown() {
-        mka.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), fryingPannUnderProductGridDropDown);
+        MouseKeyboardAction.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), fryingPannUnderProductGridDropDown);
     }
 
     @FindBy(xpath = "//img[contains(@src,'cdn/shop/files/sauteerpannen.png?')]/ancestor::a")
     private WebElement skilletsUnderProductGridDropDown;
     public void clickSkilletsUnderProductGridDropDown() {
-        mka.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), skilletsUnderProductGridDropDown);
+        MouseKeyboardAction.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), skilletsUnderProductGridDropDown);
     }
 
     @FindBy(xpath = "//img[contains(@src,'cdn/shop/files/sets.png')]/ancestor::a")
     private WebElement setsUnderProductGridDropDown;
     public void clickSetsUnderProductGridDropDown() {
-        mka.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), setsUnderProductGridDropDown);
+        MouseKeyboardAction.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), setsUnderProductGridDropDown);
     }
 
 
@@ -201,7 +194,7 @@ public class NavigationFilterPage {
     @FindBy(xpath = "//ul[@class='main-nav__dropdown']/preceding-sibling::a[contains(@href,'page')]")
     private WebElement collectionMenuDropDown;
     public void HoverOnCollectionMenuDropDown() {
-        mka.mouseHoverOnMainMenu(driver,WaitUtils.waitUntillElementVisibility(driver,collectionMenuDropDown));
+        MouseKeyboardAction.mouseHoverOnMainMenu(driver,WaitUtils.waitUntillElementVisibility(driver,collectionMenuDropDown));
     }
 
     @FindBy(xpath = "//ul[@class='main-nav__dropdown']/preceding-sibling::a[contains(@href,'page')]/following-sibling::ul//ul/li//img")
@@ -225,7 +218,7 @@ public class NavigationFilterPage {
     @FindBy(xpath = "//img[contains(@src,'cdn/shop/files/Collection_images4_Chef')]/ancestor::a")
     private WebElement chefProductUnderCollectionGridDropDown;
     public void clickChefProductUnderCollectionGridDropDown() {
-        mka.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,collectionMenuDropDown), chefProductUnderCollectionGridDropDown);
+        MouseKeyboardAction.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,collectionMenuDropDown), chefProductUnderCollectionGridDropDown);
     }
 
     @FindBy(xpath = "(//div[@id='product-grid']//div[@class='product-item__wrapper'])[3]")

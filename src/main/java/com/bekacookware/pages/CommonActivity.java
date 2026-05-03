@@ -1,28 +1,15 @@
 package com.bekacookware.pages;
 
+import com.bekacookware.base.BasePage;
 import com.bekacookware.utility.WaitUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-
-import java.time.Duration;
 
 
-public class CommonActivity {
-
-    WebDriver driver;
-    public CommonActivity(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+public class CommonActivity extends BasePage {
 
     public void launchUrl(String url) {
         driver.get(url);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-        driver.manage().deleteAllCookies();
         clickCookiesPopupAcceptance();
         clickCrossButtonOnGermanyCountrySelectionPopup();
         clickCloseButtonOnAddPopUp();

@@ -1,25 +1,17 @@
 package com.bekacookware.pages;
 
 
-
+import com.bekacookware.base.BasePage;
 import com.bekacookware.config.ConfigReader;
 import com.bekacookware.utility.UrlCheck;
 import com.bekacookware.utility.WaitUtils;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.junit.Assert;
 import java.util.List;
 
 
-public class HomePage{
-
-    WebDriver driver;
-    public HomePage(WebDriver driver) {
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
-    }
+public class HomePage  extends BasePage {
 
 
     @FindBy(xpath = "//img[@class='logo-desktop']")
@@ -149,6 +141,18 @@ public class HomePage{
             selectFrenchLanguage();
         } else if (lang.contains("Deutsch")) {
             selectDeutschLanguage();
+        }
+    }
+
+    public void verifyApplicationLanguage(String lang) {
+        if (lang.contains("English")) {
+            verifyApplicationInEnglish();
+        } else if (lang.contains("Dutch")) {
+            verifyApplicationInDutch();
+        } else if (lang.contains("French")) {
+            verifyApplicationInFrench();
+        } else if (lang.contains("Deutsch")) {
+            verifyApplicationInDeutsch();
         }
     }
 }

@@ -31,7 +31,7 @@ Feature: Cart Details Page Features
     And User click on Search Button
     And Click on first item on search result page
     And Click on Add to Cart button
-    Then Increase the product count
+    Then Increase the product count to 1
     Then Verify the total price
 
 
