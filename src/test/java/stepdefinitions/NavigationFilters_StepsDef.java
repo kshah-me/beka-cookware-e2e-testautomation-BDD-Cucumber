@@ -133,6 +133,7 @@ public class NavigationFilters_StepsDef {
     @When("Select Aluminium as Material filter")
     public void select_as_material_filter() throws InterruptedException {
         navigationfilterpage.scrollToFilterSection();
+        Thread.sleep(5000);
         navigationfilterpage.clickAluminiumFilterUnderMaterialSectionOnFilterSection();
     }
 

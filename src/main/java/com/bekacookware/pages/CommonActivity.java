@@ -5,6 +5,8 @@ import com.bekacookware.utility.WaitUtils;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.List;
+
 
 public class CommonActivity extends BasePage {
 
@@ -32,4 +34,17 @@ public class CommonActivity extends BasePage {
     public void clickCrossButtonOnGermanyCountrySelectionPopup() {
         WaitUtils.waitUntillElementVisibility(driver,crossButtonOnGermanyCountrySelectionPopup).click();
     }
+
+
+    @FindBy(css = "iframe[src*='challenges.cloudflare']")
+    private WebElement cloudflareIframe;
+    private List<WebElement> cloudflareIframeExisting;
+    public void clickRobotPagePopup() {
+        if (!cloudflareIframeExisting.isEmpty()){
+            WaitUtils.waitUntillPresenceOfElement(driver,cloudflareIframe);
+            driver.switchTo().frame(cloudflareIframe);
+
+        }
+    }
+
 }

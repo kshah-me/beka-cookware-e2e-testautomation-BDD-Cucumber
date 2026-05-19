@@ -2,13 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="BekaCookware Suite" data-provider-thread-count="2">
    <listeners>
-       <!-- Suite <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/> -->
+<!--        <listener class-name="com.aventstack.chaintest.plugins.ChainTestListener"/>-->
        <listener class-name="com.bekacookware.utility.AnnotationTransformer"/>
     </listeners>
-    <test name="All Tests">
+    <test name="All Tests" >
         <classes>
             <class name="runner.BekaCookwareRunner"/>
         </classes>
     </test>
-
 </suite>

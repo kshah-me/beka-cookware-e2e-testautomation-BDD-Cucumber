@@ -31,9 +31,9 @@ Feature: Product Details Page Features
 
 
   Scenario: Product description on Product details page
-    Then Verify product specification is not empty on Product details page
     Then Verify product description is not empty on Product details page
     Then Verify product characteristics is not empty on Product details page
+    Then Verify product specification is not empty on Product details page
     Then Verify product Care and use is not empty on Product details page
 
 

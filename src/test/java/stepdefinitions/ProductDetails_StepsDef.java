@@ -15,6 +15,7 @@ public class ProductDetails_StepsDef{
     }
     @Then("Verify product name is not empty on Product details page")
     public void verify_product_name_is_not_empty_on_product_details_page() {
+
         productdetailspage.verifyProductNameIsNotEmptyOnProductDetailsPage();
     }
 

@@ -17,6 +17,7 @@ Feature: Cart Details Page Features
     And Click on close cart button
     Then Verify product count on cart icon is same
 
+
   Scenario: Product name and price are same in cart
     And User enters "Chef" product name in Searchbox
     And User click on Search Button
@@ -24,10 +25,21 @@ Feature: Cart Details Page Features
     And Click on Add to Cart button
     Then Verify product name is same on cart page
     Then Verify product price is same on cart page
+    Then Verify Product suggestion under cart page
+    Then Verify image of product suggested under cart page are not broken
+
+
+  Scenario: Product free shipping and return days policies
+    And User enters "pan" product name in Searchbox
+    And User click on Search Button
+    And Click on first item on search result page
+    And Click on Add to Cart button
+    Then Verify shipping details and return policy on cart page
+    Then Verify delivery eligibility based on price
 
 
   Scenario: Product price increase as per count and total price in cart
-    And User enters "Sets" product name in Searchbox
+    And User enters "Pann" product name in Searchbox
     And User click on Search Button
     And Click on first item on search result page
     And Click on Add to Cart button
@@ -45,7 +57,7 @@ Feature: Cart Details Page Features
 
 
   Scenario: Max count of an Product in cart
-    And User enters "Pann" product name in Searchbox
+    And User enters "Casserole" product name in Searchbox
     And User click on Search Button
     And Click on first item on search result page
     And Click on Add to Cart button

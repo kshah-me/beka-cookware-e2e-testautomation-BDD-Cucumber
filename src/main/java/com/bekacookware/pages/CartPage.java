@@ -3,6 +3,7 @@ package com.bekacookware.pages;
 
 import com.bekacookware.base.BasePage;
 import com.bekacookware.config.ConfigReader;
+import com.bekacookware.utility.UrlCheck;
 import com.bekacookware.utility.WaitUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
@@ -22,7 +23,7 @@ public class CartPage extends BasePage {
         Assert.assertEquals(WaitUtils.waitUntillElementVisibility(driver,countOnCartButton).getText().trim(),String.valueOf(count));
     }
 
-    @FindBy(xpath="(//button[@data-increment='1'])[2]")
+    @FindBy(xpath="//button[@data-increment='1']")
     private WebElement incrementItemCountButtonCartPopUp;
     public void clickIncrementItemCountButtonCartPopUp(Integer count) throws InterruptedException {
         try {
@@ -52,6 +53,24 @@ public class CartPage extends BasePage {
 
         }
     }
+
+
+    @FindBy(xpath="//div[@id='cart-container']//p[contains(@class,'collection__title')]")
+    private WebElement productSuggestionOnCartPage;
+    public void verifyProductSuggestionOnOpenCartPage() {
+        String lang = ConfigReader.propValueFromConfigFile("Language");
+        switch (lang) {
+            case "English" ->
+                    Assert.assertEquals("You might also like", WaitUtils.waitUntillElementVisibility(driver, productSuggestionOnCartPage).getText());
+            case "Deutsch" ->
+                    Assert.assertEquals("Das könnte Ihnen auch gefallen", WaitUtils.waitUntillElementVisibility(driver, productSuggestionOnCartPage).getText());
+            case "Dutch" ->
+                    Assert.assertEquals("Ontdek meer", WaitUtils.waitUntillElementVisibility(driver, productSuggestionOnCartPage).getText());
+            case "French" ->
+                    Assert.assertEquals("vous pourriez aussi aimer", WaitUtils.waitUntillElementVisibility(driver, productSuggestionOnCartPage).getText());
+        }
+    }
+
 
 
     @FindBy(xpath="//p[@class='cart-drawer__title h4']/span")
@@ -87,7 +106,7 @@ public class CartPage extends BasePage {
         Assert.assertEquals(nameOfItemOnCartOpenPage.getText().trim().toUpperCase(), productname);
     }
 
-    @FindBy(xpath = "//div[@class='ajaxcart__product-info']/parent::div/following-sibling::div/span")
+    @FindBy(xpath = "//div[@class='ajaxcart__price-line']/span[contains(@class,'price--sale') or @class='ajaxcart__price']")
     private WebElement priceOfItemOnCartOpenPage;
     public void verifyProductPriceOnCareIsSameAsProductDetails() throws InterruptedException {
         Assert.assertEquals(Double.valueOf(priceOfItemOnCartOpenPage.getText().trim().replace("€", "").replace(",", ".")),productprice);
@@ -103,10 +122,18 @@ public class CartPage extends BasePage {
     private WebElement totalPriceOnCart;
     public void verifyTotalPriceIsSumOfEachItemPrice() {
         double updatedprice = productprice * 2;
-        //System.out.println("Calculated price:- "+updatedprice);
         Assert.assertEquals(Double.parseDouble(totalPriceOnCart.getText().trim().replace("€", "").replace(",", ".")), updatedprice, 0.01);
     }
 
+    @FindBy(xpath="//div[@data-config='cart-upsell-slider']//div[@role='group']//div[@class='product__image']//img")
+    List<WebElement> totalSuggestedItemUnderCart;
+    public void verifyImageOfSuggestedItemUnderCartAreNotBroken() {
+        if (!totalSuggestedItemUnderCart.isEmpty()){
+            for (WebElement ele:totalSuggestedItemUnderCart){
+                 UrlCheck.brokenUrlAndImageCheck(ele.getAttribute("src"));
+            }
+        }
+    }
 
     @FindBy(xpath="//p[@class='cart-drawer__title h4']/following-sibling::button")
     private WebElement closeOpenCartPupupButton;
@@ -136,4 +163,77 @@ public class CartPage extends BasePage {
         }
     }
 
+    @FindBy(xpath = "//ul[@class='ajaxcart__usps']/li")
+    List<WebElement> shippingDetailOnCartPage;
+    public void verifyShippingDetailOnCartPage() {
+        String lang = ConfigReader.propValueFromConfigFile("Language");
+        Map<String, List<String>> expectedTexts = new HashMap<>();
+        expectedTexts.put("English", List.of(
+                "Order before 12:00 = shipped the same day",
+                "Free shipping from €70",
+                "Returns within 30 days after purchase"
+        ));
+
+        expectedTexts.put("Deutsch", List.of(
+                "Bestellen Sie vor 12:00 Uhr = Versand am selben Tag",
+                "Kostenloser Versand ab 70€",
+                "Rücksendungen innerhalb von 30 Tagen nach dem Kauf"
+        ));
+
+        expectedTexts.put("Dutch", List.of(
+                "Voor 12:00 besteld = zelfde dag verzonden",
+                "Gratis verzending vanaf 70 euro",
+                "Retour binnen 30 dagen na aankoop"
+        ));
+
+        expectedTexts.put("French", List.of(
+                "Commande passée avant midi = expédiée le jour même",
+                "Livraison gratuite à partir de 70 euros",
+                "Retour dans les 30 jours suivant l'achat"
+        ));
+
+        List<String> expectedList = expectedTexts.get(lang);
+        Assert.assertEquals(expectedList.size(), shippingDetailOnCartPage.size());
+
+        for (int i = 0; i < expectedList.size(); i++) {
+            String actualText = shippingDetailOnCartPage.get(i).getText().trim();
+            Assert.assertEquals(actualText, expectedList.get(i));
+        }
+    }
+
+
+    @FindBy(xpath="//div[@id='free-shipping-bar']/p")
+    private WebElement deliveryMessageCheck;
+    public void verifyDeliveryMessageCheckOnCartPage() {
+        String lang = ConfigReader.propValueFromConfigFile("Language");
+        double price =Double.parseDouble(totalPriceOnCart.getText().trim().replace("€", "").replace(",", "."));
+        System.out.println("total price before:- "+totalPriceOnCart.getText().trim());
+        System.out.println("Delivery message text:- "+price);
+        if (price>69.99){
+            switch (lang) {
+                case "English" ->
+                        Assert.assertEquals("You are eligible for free shipping!", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+                case "Deutsch" ->
+                        Assert.assertEquals("Sie haben Anspruch auf kostenlosen Versand!", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+                case "Dutch" ->
+                        Assert.assertEquals("Je hebt recht op gratis verzending!", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+                case "French" ->
+                        Assert.assertEquals("Vous avez droit à la livraison gratuite !", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+            }
+        }
+        else {
+            String formattedPrice = "€"+String.format("%.2f", 70.00-price).replace(".",",");
+            System.out.println("Delivery message formattedPrice:- "+formattedPrice);
+            switch (lang) {
+                case "English" ->
+                        Assert.assertEquals("Add "+formattedPrice+" more for free shipping!", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+                case "Deutsch" ->
+                        Assert.assertEquals("Fügen Sie "+formattedPrice+" mehr für kostenlosen Versand hinzu!", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+                case "Dutch" ->
+                        Assert.assertEquals("Voeg nog "+formattedPrice+" toe voor gratis verzending!", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+                case "French" ->
+                        Assert.assertEquals("Ajoutez "+formattedPrice+" pour avoir une livraison gratuite !", WaitUtils.waitUntillElementVisibility(driver, deliveryMessageCheck).getText());
+            }
+        }
+    }
 }

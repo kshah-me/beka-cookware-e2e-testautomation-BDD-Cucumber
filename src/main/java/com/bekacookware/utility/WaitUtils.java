@@ -23,6 +23,12 @@ public class WaitUtils{
         .until(ExpectedConditions.elementToBeClickable(element));
     }
 
+    public static void waitUntillPresenceOfElement(WebDriver driver,WebElement element) {
+         new WebDriverWait(driver,Duration.ofSeconds(120))
+                .until(ExpectedConditions.frameToBeAvailableAndSwitchToIt(element));
+    }
+
+
     public static void waitUntillPageLoaded(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(120));
         wait.until(webDriver ->

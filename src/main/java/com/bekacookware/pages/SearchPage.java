@@ -23,7 +23,7 @@ public class SearchPage extends BasePage {
     }
 
 
-    @FindBy(xpath = "(//input[@name='q'])[3]")
+    @FindBy(xpath = "(//input[@name='q'])[2]")
     private WebElement searchInputBoxOnHomePage;
     public void enterSearchInputBoxOnHomePage(String item) throws InterruptedException {
         WaitUtils.waitUntillElementVisibility(driver,searchInputBoxOnHomePage).sendKeys(item);
@@ -44,7 +44,7 @@ public class SearchPage extends BasePage {
         WaitUtils.waitUntillPageLoaded(driver);
     }
 
-    @FindBy(xpath = "(//button[contains(@class,'search-bar__submit')])[3]")
+    @FindBy(xpath = "(//button[contains(@class,'search-bar__submit')])[2]")
     private WebElement searchSubmitButtonOnHomePage;
     public void clickSearchSubmitButtonOnHomePage() {
         WaitUtils.waitUntillElementVisibility(driver,searchSubmitButtonOnHomePage).click();

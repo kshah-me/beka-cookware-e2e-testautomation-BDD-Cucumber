@@ -25,7 +25,7 @@ public class CartDetails_StepsDef{
     @Then("Increase the product count to {int}")
     public void increase_the_product_count_to(Integer count) throws InterruptedException {
             cartpage.clickIncrementItemCountButtonCartPopUp(count);
-            Thread.sleep(5000);
+            Thread.sleep(3000);
 
     }
 
@@ -44,6 +44,18 @@ public class CartDetails_StepsDef{
     public void verify_product_name_is_same_on_cart_page() throws InterruptedException {
         cartpage.verifyProductNameOnCareIsSameAsProductDetails();
     }
+
+    @Then("Verify Product suggestion under cart page")
+    public void verify_product_suggestion_on_cart_page() throws InterruptedException {
+        cartpage.verifyProductSuggestionOnOpenCartPage();
+    }
+
+
+    @Then("Verify image of product suggested under cart page are not broken")
+    public void verify_image_of_product_suggested_under_cart_page_are_not_broken() throws InterruptedException {
+       cartpage.verifyImageOfSuggestedItemUnderCartAreNotBroken();
+    }
+
 
     @Then("Verify product price is same on cart page")
     public void verify_product_price_is_same_on_cart_page() throws InterruptedException {
@@ -73,5 +85,14 @@ public class CartDetails_StepsDef{
         cartpage.verify10ProductPriceOnCartIsSameAsProductDetails(count);
     }
 
+    @Then("Verify shipping details and return policy on cart page")
+    public void verify_shipping_details_on_cart_page() throws InterruptedException {
+        cartpage.verifyShippingDetailOnCartPage();
+    }
+
+    @Then("Verify delivery eligibility based on price")
+    public void verify_free_delivery_eligibility_based_on_price() throws InterruptedException {
+        cartpage.verifyDeliveryMessageCheckOnCartPage();
+    }
 
 }
