@@ -2,9 +2,8 @@ package com.bekacookware.utility;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-
 import org.testng.IAnnotationTransformer;
-import org.testng.annotations.ITestAnnotation;
+import org.testng.annotations.*;
 
 public class AnnotationTransformer implements IAnnotationTransformer {
 
@@ -15,4 +14,5 @@ public class AnnotationTransformer implements IAnnotationTransformer {
                           Method testMethod) {
         annotation.setRetryAnalyzer(RetryAnalyzer.class);
     }
+
 }

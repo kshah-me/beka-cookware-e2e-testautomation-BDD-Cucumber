@@ -85,7 +85,7 @@ public class NavigationFilterPage  extends BasePage {
     }
 
 
-    @FindBy(xpath = "//nav[@aria-label='breadcrumbs']/following-sibling::h1")
+    @FindBy(xpath = "//nav[@aria-label='breadcrumbs']/following-sibling::div/h1")
     private WebElement inspirationNavigationPage;
     public void verifyInspirationPageDisplayed() {
         String lang = ConfigReader.propValueFromConfigFile("Language");
@@ -155,7 +155,7 @@ public class NavigationFilterPage  extends BasePage {
         MouseKeyboardAction.mouseHoverOnMainMenu(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown));
     }
 
-    @FindBy(xpath = "//img[contains(@src,'cdn/shop/files/pannen.png?')]/ancestor::a")
+    @FindBy(xpath = "//img[contains(@src,'cdn/shop/collections/pannen')]/ancestor::a")
     private WebElement fryingPannUnderProductGridDropDown;
     public void clickFryingPannUnderProductGridDropDown() {
         MouseKeyboardAction.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), fryingPannUnderProductGridDropDown);
@@ -167,7 +167,7 @@ public class NavigationFilterPage  extends BasePage {
         MouseKeyboardAction.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), skilletsUnderProductGridDropDown);
     }
 
-    @FindBy(xpath = "//img[contains(@src,'cdn/shop/files/sets.png')]/ancestor::a")
+    @FindBy(xpath = "(//img[contains(@src,'cdn/shop/collections/sets.png')]/ancestor::a)[1]")
     private WebElement setsUnderProductGridDropDown;
     public void clickSetsUnderProductGridDropDown() {
         MouseKeyboardAction.clickSubMenuViaMouseHover(driver,WaitUtils.waitUntillElementVisibility(driver,productMenuDropDown), setsUnderProductGridDropDown);
@@ -191,13 +191,13 @@ public class NavigationFilterPage  extends BasePage {
     }
 
 
-    @FindBy(xpath = "//ul[@class='main-nav__dropdown']/preceding-sibling::a[contains(@href,'page')]")
+    @FindBy(xpath = "//ul[contains(@class,'main-nav__dropdown')]/preceding-sibling::a[contains(@href,'page')]")
     private WebElement collectionMenuDropDown;
     public void HoverOnCollectionMenuDropDown() {
         MouseKeyboardAction.mouseHoverOnMainMenu(driver,WaitUtils.waitUntillElementVisibility(driver,collectionMenuDropDown));
     }
 
-    @FindBy(xpath = "//ul[@class='main-nav__dropdown']/preceding-sibling::a[contains(@href,'page')]/following-sibling::ul//ul/li//img")
+    @FindBy(xpath = "//ul[contains(@class,'main-nav__dropdown')]/preceding-sibling::a[contains(@href,'page')]/following-sibling::ul//ul/li//img")
     private List<WebElement> imageunderCollectionMenuList;
     public void verifyImagesOfItemsUnderCollectionMenuListIsNotBroken(){
         for(WebElement collectionItem:imageunderCollectionMenuList){
@@ -206,10 +206,11 @@ public class NavigationFilterPage  extends BasePage {
     }
 
 
-    @FindBy(xpath = "//ul[@class='main-nav__dropdown']/preceding-sibling::a[contains(@href,'page')]/following-sibling::ul//ul/li//span/following-sibling::span")
+    @FindBy(xpath = "//ul[@class='main-nav__dropdown-item-list']/li//span[contains(@class,'--grid-title')]")
     public List<WebElement> nameUnderCollectionMenuList;
     public void verifyNameOfItemsUnderCollectionListIsNotEmpty(){
         for(WebElement productItemName:nameUnderCollectionMenuList){
+            //System.out.println(productItemName.getText().trim().isEmpty());
             Assert.assertFalse(productItemName.getText().trim().isEmpty());
         }
     }
@@ -234,10 +235,10 @@ public class NavigationFilterPage  extends BasePage {
         filterSectionOnSearchResultpage.isDisplayed();
     }
 
-    @FindBy(xpath = "//div[@id='FacetsWrapperDesktop']/details[@data-index='1']")
+    @FindBy(xpath = "//div[@id='FacetsWrapperDesktop']//p[@id='verticalTitle']")
     private WebElement filterSection;
     public void scrollToFilterSection() {
-        PageScrollUtility.scrollToElement(driver,filterSection);
+        PageScrollUtility.scrollToElement(driver,filterMaterialExpandButtonOnFilterSection);
     }
 
     @FindBy(xpath = "//span[@id='ProductCountDesktop']")
@@ -264,7 +265,7 @@ public class NavigationFilterPage  extends BasePage {
 
     @FindBy(xpath = "(//span[normalize-space()='Aluminium' or normalize-space()='Aluminum']/ancestor::li)[1]")
     private WebElement filterMaterialAluminiumButtonOnFilterSection;
-    @FindBy(xpath = "//details[@data-index='4']//summary")
+    @FindBy(xpath = "(//summary[contains(@aria-label,'Matériaux') or contains(@aria-label,'Materia')])[1]")
     private WebElement filterMaterialExpandButtonOnFilterSection;
     public void clickAluminiumFilterUnderMaterialSectionOnFilterSection() throws InterruptedException {
         WaitUtils.waitUntillElementVisibility(driver,filterMaterialExpandButtonOnFilterSection).click();
@@ -273,9 +274,9 @@ public class NavigationFilterPage  extends BasePage {
         Thread.sleep(3000);
     }
 
-    @FindBy(xpath = "//details[@data-index='2']//summary")
+    @FindBy(xpath = "(//summary[contains(@aria-label,'dishwasher') or contains(@aria-label,'vaatwasser') or contains(@aria-label,'Wärmequelle') or contains(@aria-label,'lave-vaisselle')])[1]")
     private WebElement filterHeatSourceDishwasherExpandButtonOnFilterSection;
-    @FindBy(xpath = "//details[@data-index='2']//summary/following-sibling::div//ul/li//span[contains(text(),'Electric') or contains(text(),'Électrique') or contains(text(),'Elektrisch')]/ancestor::li")
+    @FindBy(xpath = "//summary/following-sibling::div//ul/li//span[contains(text(),'Electric') or contains(text(),'Électrique') or contains(text(),'Elektrisch')]/ancestor::li")
     private WebElement filterHeatSourceTypeElectricButtonOnFilterSection;
     public void clickElectricFilterUnderHeatSourceOnFilterSection() throws InterruptedException {
         WaitUtils.waitUntillElementVisibility(driver,filterHeatSourceDishwasherExpandButtonOnFilterSection).click();

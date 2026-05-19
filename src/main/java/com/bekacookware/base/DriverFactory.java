@@ -11,7 +11,7 @@ import org.openqa.selenium.edge.EdgeOptions;
 import java.time.Duration;
 
 
-public final class DriverFactory {
+public class DriverFactory {
 
     private static final DriverFactory INSTANCE = new DriverFactory();
 
@@ -56,10 +56,8 @@ public final class DriverFactory {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--incognito");
         options.addArguments("--force-device-scale-factor=0.8");
-        options.addArguments("--incognito");
-      return options;
+        return options;
     }
-
     private EdgeOptions getEdgeOptions() {
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--force-device-scale-factor=0.8");
@@ -85,4 +83,3 @@ public final class DriverFactory {
         }
     }
 }
-

@@ -15,19 +15,18 @@ public class Hooks{
 
     @Before()
     public void launchBrowser(Scenario sc) throws Exception {
+        DriverFactory.getInstance().initDriver();
         if(ConfigReader.propValueFromConfigFile("RecordingExecution").equals("Yes")){
             ScreenRecorderUtil.startRecord(sc.getName());
         }
-        DriverFactory.getInstance().initDriver();
     }
-
 
     @After()
     public void teardown(Scenario sc) throws Exception {
         CaptureScreenshotEvidence.takeScreenshotOnFailure(DriverFactory.getInstance().getDriver(), sc);
-        DriverFactory.getInstance().quitDriver();
         if(ConfigReader.propValueFromConfigFile("RecordingExecution").equals("Yes")){
             ScreenRecorderUtil.stopRecord();
         }
+        DriverFactory.getInstance().quitDriver();
     }
 }

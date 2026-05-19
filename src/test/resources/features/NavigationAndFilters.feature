@@ -47,6 +47,7 @@ Feature: Navigation & Categories
 
 
   Scenario: Apply the multiple filter and verify updated result page
+    When User hover on Product tab
     And Click on Frying pan product
     And Get the Initial Count Before Filter
     And Select Aluminium as Material filter

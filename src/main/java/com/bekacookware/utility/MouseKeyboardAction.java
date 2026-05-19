@@ -7,7 +7,6 @@ import org.openqa.selenium.interactions.Actions;
 
 public class MouseKeyboardAction {
 
-
     public static void clickSubMenuViaMouseHover(WebDriver driver,WebElement menu, WebElement submenu){
         new Actions(driver)
         .moveToElement(menu)

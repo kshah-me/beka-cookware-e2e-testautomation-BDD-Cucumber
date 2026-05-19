@@ -1,15 +1,17 @@
 package runner;
 
+
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.testng.annotations.DataProvider;
+import org.testng.annotations.*;
 
 @CucumberOptions(
-        plugin = { "pretty", "html:target/cucumber-reports", "com.aventstack.chaintest.plugins.ChainTestCucumberListener:"},
-        features="src/test/resources/features",
+
+        //plugin = { "com.aventstack.chaintest.plugins.ChainTestCucumberListener:"},
+        plugin = { "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"},
+        features="src/test/resources/features/HomePage.feature",
         glue={"stepdefinitions", "hooks"}
 )
-
 public class BekaCookwareRunner extends AbstractTestNGCucumberTests {
 
     @DataProvider(parallel = true)
@@ -17,5 +19,5 @@ public class BekaCookwareRunner extends AbstractTestNGCucumberTests {
     public Object[][] scenarios(){
         return super.scenarios();
     }
-}
 
+}

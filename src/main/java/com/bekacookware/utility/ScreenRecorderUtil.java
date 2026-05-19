@@ -27,6 +27,7 @@ public class ScreenRecorderUtil extends ScreenRecorder {
      throws IOException, AWTException {
   super(cfg, captureArea, fileFormat, screenFormat, mouseFormat, audioFormat, movieFolder);
   this.name = name;
+
  }
 
  @Override

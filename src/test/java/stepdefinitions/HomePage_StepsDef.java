@@ -51,8 +51,6 @@ public class HomePage_StepsDef {
         commonactivity.clickCloseButtonOnAddPopUp();
     }
 
-
-
     @Then("Verify all Main menu and sub menus are working")
     public void verify_all_main_menu_and_sub_menus_are_working() throws InterruptedException {
         homepage.verifyNavigationOnHomePage();

@@ -32,13 +32,13 @@ public class ProductDetailsPage extends BasePage {
     }
 
 
-    @FindBy(xpath = "//button[@data-tab-id='care-and-use']")
+    @FindBy(xpath = "//h3[text()='Care and use']")
     private WebElement productCareAndUseOnProductDetailsPage;
     public void clickProductCareAndUseOnProductDetailsPage() {
        WaitUtils.waitUntillElementVisibility(driver,productCareAndUseOnProductDetailsPage).click();
     }
 
-    @FindBy(xpath = "//div[@class='product-info__body']/a")
+    @FindBy(xpath = "//h3[text()='Care and use']/following-sibling::div/a")
     private WebElement productCareAndUseAsLinkOnProductDetailsPage;
     public void verifyProductCareAndUseIsNotEmptyOnProductDetailsPage() {
         Assert.assertFalse(WaitUtils.waitUntillElementVisibility(driver,productCareAndUseAsLinkOnProductDetailsPage).getText().isEmpty());
@@ -72,11 +72,6 @@ public class ProductDetailsPage extends BasePage {
             }
     }
 
-
-
-
-
-
     @FindBy(xpath = "//div[@class='product__price']/span")
     private WebElement productPriceOnProductDetailsPage;
     public void verifyProductPrinceIsNotEmpty() {
@@ -94,13 +89,13 @@ public class ProductDetailsPage extends BasePage {
         WaitUtils.waitUntillElementClickable(driver,viewProductSpecificationsOnProductDetailsPage).click();
     }
 
-    @FindBy(xpath = "//button[@data-tab-id='description']")
+    @FindBy(xpath = "//h3[@data-tab-id='description']")
     private WebElement productDescriptionButtonOnProductDetailsPage;
     public void clickProductDescriptionButton() {
         WaitUtils.waitUntillElementClickable(driver,productDescriptionButtonOnProductDetailsPage).click();
     }
 
-    @FindBy(xpath = "//div[@data-tab-id='description']/div")
+    @FindBy(xpath = "//div[contains(@class,'content--visible')]")
     private WebElement productDescriptionOnProductDetailsPage;
     public void verifyProductDescriptionIsNotEmpty() {
         Assert.assertFalse(WaitUtils.waitUntillElementVisibility(driver,productDescriptionOnProductDetailsPage).getText().isEmpty());
@@ -121,13 +116,13 @@ public class ProductDetailsPage extends BasePage {
     }
 
 
-    @FindBy(xpath = "//button[@data-tab-id='characteristics']")
+    @FindBy(xpath = "//h3[text()='Characteristics']")
     private WebElement productCharacteristicsButtonOnProductDetailsPage;
     public void clickProductCharacteristicsButtonOnProductDetailsPage() {
         WaitUtils.waitUntillElementVisibility(driver,productCharacteristicsButtonOnProductDetailsPage).click();
     }
 
-    @FindBy(xpath = "//div[@data-tab-id='characteristics']//ul/li")
+    @FindBy(xpath = "//div[contains(@class,'content--visible')]/ul/li")
     private List<WebElement> productCharacteristicsDescriptionOnProductDetailsPage;
     public void verifyProductCharacteristicsDescriptionIsNotEmpty() {
         for(WebElement chars:productCharacteristicsDescriptionOnProductDetailsPage){

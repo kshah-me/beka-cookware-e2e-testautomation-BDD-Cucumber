@@ -11,5 +11,4 @@ public class PageScrollUtility {
                 .executeScript("arguments[0].scrollIntoView({block:'center'});", element);
     }
 
-
 }

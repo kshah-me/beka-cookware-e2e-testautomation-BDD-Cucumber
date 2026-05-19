@@ -85,6 +85,7 @@ public class HomePage  extends BasePage {
         Assert.assertTrue(WaitUtils.waitUntillElementVisibility(driver,footerOnHomePage).isDisplayed());
     }
 
+
     @FindBy(xpath="//nav//a")
     private List<WebElement> navigationOnHomePage;
     public void verifyNavigationOnHomePage() throws InterruptedException {

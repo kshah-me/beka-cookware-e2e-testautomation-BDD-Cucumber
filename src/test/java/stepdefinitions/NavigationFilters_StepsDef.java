@@ -108,6 +108,7 @@ public class NavigationFilters_StepsDef {
         navigationfilterpage.verifyNameOfItemsUnderCollectionListIsNotEmpty();
     }
 
+
     @When("Click on Frying pan product")
     public void click_on_frying_pan_product() {
         navigationfilterpage.clickFryingPannUnderProductGridDropDown();
@@ -133,6 +134,7 @@ public class NavigationFilters_StepsDef {
     @When("Select Aluminium as Material filter")
     public void select_as_material_filter() throws InterruptedException {
         navigationfilterpage.scrollToFilterSection();
+        Thread.sleep(5000);
         navigationfilterpage.clickAluminiumFilterUnderMaterialSectionOnFilterSection();
     }
 
