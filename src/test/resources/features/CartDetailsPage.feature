@@ -8,6 +8,7 @@ Feature: Cart Details Page Features
     And User clicks on search icon
 
 
+
   Scenario: Add product into cart page
     And User enters "Tea and coffee" product name in Searchbox
     And User click on Search Button

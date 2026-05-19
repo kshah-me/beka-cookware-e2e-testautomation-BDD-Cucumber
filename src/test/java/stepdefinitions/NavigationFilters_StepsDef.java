@@ -108,6 +108,7 @@ public class NavigationFilters_StepsDef {
         navigationfilterpage.verifyNameOfItemsUnderCollectionListIsNotEmpty();
     }
 
+
     @When("Click on Frying pan product")
     public void click_on_frying_pan_product() {
         navigationfilterpage.clickFryingPannUnderProductGridDropDown();

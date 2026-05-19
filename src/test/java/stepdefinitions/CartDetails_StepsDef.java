@@ -85,6 +85,7 @@ public class CartDetails_StepsDef{
         cartpage.verify10ProductPriceOnCartIsSameAsProductDetails(count);
     }
 
+
     @Then("Verify shipping details and return policy on cart page")
     public void verify_shipping_details_on_cart_page() throws InterruptedException {
         cartpage.verifyShippingDetailOnCartPage();

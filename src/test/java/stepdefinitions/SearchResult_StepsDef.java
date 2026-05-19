@@ -26,6 +26,7 @@ public class SearchResult_StepsDef {
         searchpage.clickSearchSubmitButtonOnHomePage();
     }
 
+
     @When("User click on Search Button on Search Result Page")
     public void user_click_on_serach_button_on_search_result_page() {
         searchpage.clickSearchSubmitButtonOnSearchresultPage();

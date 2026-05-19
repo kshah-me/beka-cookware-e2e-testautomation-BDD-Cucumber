@@ -10,5 +10,6 @@ public class UrlCheck {
             Response response = RestAssured.get();
             return response.statusCode();
         }
+
     }
 

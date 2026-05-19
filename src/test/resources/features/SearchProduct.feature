@@ -6,6 +6,7 @@ Feature: Search Product
     Given Launch the application url
     When Select application language based on configuration
 
+
   Scenario Outline: Search with valid product name
     And User clicks on search icon
     When User enters "<productname>" product name in Searchbox

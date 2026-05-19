@@ -17,6 +17,7 @@ public class CommonActivity extends BasePage {
         clickCloseButtonOnAddPopUp();
     }
 
+
     @FindBy(xpath = "//button[@aria-label='Close dialog']/*[local-name()='svg']")
     private WebElement closeButtonOnAddPopUp;
     public void clickCloseButtonOnAddPopUp() {

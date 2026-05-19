@@ -21,7 +21,6 @@ public class Hooks{
         }
     }
 
-
     @After()
     public void teardown(Scenario sc) throws Exception {
         CaptureScreenshotEvidence.takeScreenshotOnFailure(DriverFactory.getInstance().getDriver(), sc);

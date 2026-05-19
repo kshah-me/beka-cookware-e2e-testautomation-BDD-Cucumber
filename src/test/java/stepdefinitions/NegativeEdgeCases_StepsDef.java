@@ -5,8 +5,6 @@ import com.bekacookware.pages.*;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
-
-
 public class NegativeEdgeCases_StepsDef{
 
     HomePage homepage = new HomePage();

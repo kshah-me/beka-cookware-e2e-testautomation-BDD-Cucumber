@@ -58,7 +58,6 @@ public class DriverFactory {
         options.addArguments("--force-device-scale-factor=0.8");
         return options;
     }
-
     private EdgeOptions getEdgeOptions() {
         EdgeOptions options = new EdgeOptions();
         options.addArguments("--force-device-scale-factor=0.8");

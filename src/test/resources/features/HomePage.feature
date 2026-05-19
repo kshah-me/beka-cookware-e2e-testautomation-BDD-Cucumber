@@ -6,6 +6,7 @@ Feature: Home Page Features
     Given Launch the application url
     When Select application language based on configuration
 
+
   Scenario: Logo on Home page
     Then Verify logo is present on home page
 

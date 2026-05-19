@@ -10,6 +10,7 @@ Feature: Product Details Page Features
     And User click on Search Button
     And Click on first item on search result page
 
+
   Scenario: Product name on Product details page
     Then Verify product name is not empty on Product details page
 

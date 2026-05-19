@@ -55,6 +55,7 @@ public class ProductDetails_StepsDef{
         productdetailspage.verifyProductSpecificationsDetailsIsNotEmpty();
     }
 
+
     @Then("Verify product Care and use is not empty on Product details page")
     public void verify_product_care_and_use_is_not_empty_on_product_details_page() {
         productdetailspage.clickProductCareAndUseOnProductDetailsPage();

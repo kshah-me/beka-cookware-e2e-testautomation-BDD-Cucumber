@@ -51,7 +51,6 @@ public class SearchPage extends BasePage {
         WaitUtils.waitUntillPageLoaded(driver);
     }
 
-
     @FindBy(xpath = "//nav[@aria-label='breadcrumbs']/following-sibling::div//h1")
     private WebElement searchResultPage;
     public void verifySearchResultPageDisplayed() {
@@ -67,7 +66,6 @@ public class SearchPage extends BasePage {
                     Assert.assertTrue(WaitUtils.waitUntillElementVisibility(driver, searchResultPage).getText().trim().contains("RÉSULTATS DE RECHERCHE"));
         }
     }
-
 
 
     @FindBy(xpath = "//nav[@aria-label='breadcrumbs']//span/following-sibling::span")

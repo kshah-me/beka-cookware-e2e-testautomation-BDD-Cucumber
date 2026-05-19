@@ -56,7 +56,6 @@ Feature: Navigation & Categories
     Then Verify result has been updated
 
 
-
   Scenario: Apply the multiple filter and verify no record displayed
     When User hover on Product tab
     And Click on Sets product

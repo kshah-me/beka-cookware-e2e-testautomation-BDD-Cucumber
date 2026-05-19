@@ -72,11 +72,6 @@ public class ProductDetailsPage extends BasePage {
             }
     }
 
-
-
-
-
-
     @FindBy(xpath = "//div[@class='product__price']/span")
     private WebElement productPriceOnProductDetailsPage;
     public void verifyProductPrinceIsNotEmpty() {
